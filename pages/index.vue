@@ -6,22 +6,17 @@
         DocEdit
       </h1>
       <h2 class="subtitle">
-        My astonishing Nuxt.js project
+        Document editor with drag & drop and content resizable features
       </h2>
       <div class="links">
+        <nuxt-link to="/documents" class="button--green">
+          Get Started
+        </nuxt-link>
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
+          href="https://github.com/arnold-unified/doc-edit"
           target="_blank"
           class="button--grey"
         >GitHub</a>
-        <nuxt-link to="/documents" class="button--grey">
-          Documents
-        </nuxt-link>
       </div>
     </div>
   </section>

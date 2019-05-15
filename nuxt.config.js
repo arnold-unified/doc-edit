@@ -28,10 +28,10 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/sass/main.scss',
     'quill/dist/quill.core.css',
     'quill/dist/quill.snow.css',
-    '~/assets/sass/quill.scss',
-    '~/assets/sass/main.scss'
+    '~/assets/sass/quill.scss'
   ],
 
   /*
@@ -48,6 +48,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
