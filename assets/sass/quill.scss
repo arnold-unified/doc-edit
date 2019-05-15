@@ -1,0 +1,17 @@
+// TEXT
+.quill-text {
+	min-height: 20px;
+
+  & > .ql-editor {
+    padding: 5px!important;
+  }
+}
+
+// IMAGE
+.quill-image {
+  min-height: 150px;
+
+  & > .ql-editor {
+    padding: 0px!important;
+  }
+}
