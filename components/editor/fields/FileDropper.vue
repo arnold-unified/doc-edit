@@ -1,16 +1,16 @@
 <template>
   <div>
-    <form id="dropper-form" class="dropper-form" enctype="multipart/form-data">
-      <div class="dropper-inputs-container">
+    <form id="doc-dropper-form" class="doc-dropper-form" enctype="multipart/form-data">
+      <div class="doc-dropper-inputs-container">
         <input
           id="file"
-          class="dropper-input"
+          class="doc-dropper-input"
           type="file"
           name="files[]"
           :accept="dataAccept"
           multiple
         ></input>
-        <label for="file"><strong>Choose a file</strong><span class="dropper-dragndrop"> or drag it here</span>.</label>
+        <label for="file"><strong>Choose a file</strong><span class="doc-dropper-dragndrop"> or drag it here</span>.</label>
       </div>
     </form>
   </div>
@@ -31,7 +31,7 @@ export default {
   },
 
   mounted() {
-    $form = document.getElementById('dropper-form')
+    $form = document.getElementById('doc-dropper-form')
     $input = $form.getElementsByTagName('input')[0]
 
     this.validateDropper()
@@ -123,10 +123,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.dropper-form {
+.doc-dropper-form {
   position: relative;
 
-  & .dropper-dragndrop {
+  & .doc-dropper-dragndrop {
     display: none;
   }
 
@@ -136,7 +136,7 @@ export default {
     outline-offset: -10px;
     height: 300px;
 
-    & .dropper-dragndrop {
+    & .doc-dropper-dragndrop {
       display: inline;
     }
   }
@@ -145,14 +145,14 @@ export default {
     background-color: #d7f1ff;
   }
 
-  & .dropper-inputs-container {
+  & .doc-dropper-inputs-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
-  & .dropper-input {
+  & .doc-dropper-input {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;

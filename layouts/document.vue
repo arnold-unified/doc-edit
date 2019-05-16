@@ -23,6 +23,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  margin: 0;
+  background: rgb(239, 237, 236);
 }
 #app {
   box-sizing: border-box;

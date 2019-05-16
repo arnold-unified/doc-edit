@@ -1,9 +1,9 @@
 <template>
-  <section class="container">
+  <section class="doc-container">
     <file-dropper data-accept="image/*" @files-received="handleFiles" />
     <div
       v-quill:quillInstance="quillOptions"
-      class="quill-image"
+      class="doc-image-block"
       :content="content"
       @change="onEditorChange($event)"
       @blur="onEditorBlur($event)"
@@ -19,6 +19,8 @@ import FileDropper from '~/components/editor/fields/FileDropper.vue'
 let vm
 
 export default {
+  name: 'ImageBlock',
+
   components: {
     FileDropper
   },
@@ -83,7 +85,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  margin: 0 0 10px;
+.doc-container {
+  margin: 0 0 40px;
+}
+</style>
+<style lang="scss">
+.doc-image-block {
+  min-height: 150px;
+
+  & > .ql-editor {
+    padding: 0px!important;
+  }
 }
 </style>

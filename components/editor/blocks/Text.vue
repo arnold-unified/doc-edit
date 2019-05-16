@@ -1,8 +1,8 @@
 <template>
-  <section class="container">
+  <section class="doc-container">
     <div
       v-quill:myQuillEditor="editorOption"
-      class="quill-text"
+      class="doc-text-block"
       :content="content"
       @change="onEditorChange($event)"
       @blur="onEditorBlur($event)"
@@ -14,6 +14,8 @@
 
 <script>
 export default {
+  name: 'TextBlock',
+
   data() {
     return {
       content: ``,
@@ -55,7 +57,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  margin: 0 0 10px;
+.doc-container {
+  margin: 0 0 40px;
+}
+</style>
+<style lang="scss">
+.doc-text-block {
+  min-height: 20px;
+
+  & > .ql-editor {
+    padding: 5px!important;
+  }
 }
 </style>

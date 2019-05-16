@@ -1,9 +1,9 @@
 <template>
-  <section class="container">
+  <section class="doc-container">
     <video-linker @linked="handleVideoLink" />
     <div
       v-quill:quillInstance="quillOptions"
-      class="quill-video"
+      class="doc-video-block"
       :content="content"
       @change="onEditorChange($event)"
       @focus="onEditorFocus($event)"
@@ -15,6 +15,8 @@
 import VideoLinker from '~/components/editor/fields/VideoLinker.vue'
 
 export default {
+  name: 'VideoBlock',
+
   components: {
     VideoLinker
   },
@@ -54,7 +56,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  margin: 0 0 10px;
+.doc-container {
+  margin: 0 0 40px;
+}
+</style>
+<style lang="scss">
+.doc-video-block {
+  min-height: 300px;
+
+  & > .ql-editor {
+    position: relative;
+    padding-bottom: 55.25%;
+    padding-top: 10px;
+    height: 0;
+    overflow: hidden;
+
+    & > iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>
