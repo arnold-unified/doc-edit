@@ -53,11 +53,11 @@ export default {
   data() {
     return {
       resizeHandleClass: 'resize-handle',
-      headers: ['head0', 'head1', 'head2'],
+      headers: ['', '', ''],
       rows: [
-        ['row0 col0', 'row0 col1', 'row0 col2'],
-        ['row1 col0', 'row1 col1', 'row1 col2'],
-        ['row2 col0', 'row2 col1', 'row2 col2']
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
       ],
       rowIndex: 0,
       colIndex: 0
@@ -207,7 +207,7 @@ table.doc-resizable-table {
   }
 
   & .resize-handle:hover {
-    border-right: 2px solid red;
+    border-right: 2px solid #4ad8ac;
   }
 }
 </style>

@@ -131,8 +131,8 @@ export default {
   }
 
   &.has-advanced-upload {
-    background-color: #eef9ff;
-    outline: 2px dashed #c0dbea;
+    background-color: #e5fff7;
+    outline: 2px dashed #4ce0b2;
     outline-offset: -10px;
     height: 300px;
 
@@ -142,7 +142,7 @@ export default {
   }
 
   &.is-dragover {
-    background-color: #d7f1ff;
+    background-color: #b4f3df;
   }
 
   & .doc-dropper-inputs-container {
