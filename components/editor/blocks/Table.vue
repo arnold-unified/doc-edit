@@ -32,11 +32,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, rowIdx) in rows" :key="rowIdx">
-          <td v-for="(col, colIdx) in row" :key="colIdx">
-            <div contenteditable="true" @click.prevent="setIndices(rowIdx, colIdx)">
-              {{ col }}
-            </div>
+        <tr v-for="(row, rowIdx) in rows" :id="`${rowIdx}`" :key="rowIdx">
+          <td v-for="(col, colIdx) in row" :id="`${rowIdx}-${colIdx}`" :key="colIdx">
+            <div contenteditable="true" @click.prevent="setIndices(rowIdx, colIdx)" @blur="updateContent($event, rowIdx, colIdx)" v-html="col" />
           </td>
         </tr>
       </tbody>
@@ -65,47 +63,45 @@ export default {
   },
 
   mounted() {
-    const tables = document.getElementsByClassName('doc-resizable-table')
-    for (let i = 0; i < tables.length; i++) {
-      this.resizableTable(tables[i])
-    }
+    this.initResizableTable()
   },
 
   beforeDestroy() {
-    if (resizeHandleDiv) {
-      resizeHandleDiv.removeEventListener('mousedown', function () {
-        console.log('mousedown event removed')
-      })
-    }
-    document.removeEventListener('mousemove', function () {
-      console.log('mousemove event removed')
-    })
-    document.removeEventListener('mouseup', function () {
-      console.log('mouseup event removed')
-    })
+    this.destroyListeners()
   },
 
   methods: {
+    initResizableTable() {
+      const tables = document.getElementsByClassName('doc-resizable-table')
+      for (let i = 0; i < tables.length; i++) {
+        this.resizableTable(tables[i])
+      }
+    },
     resizableTable(table) {
       const row = table.getElementsByTagName('tr')[0]
       const cols = row ? row.children : undefined
-      let col
 
       if (!cols) return
 
       for (let i = 0; i < cols.length; i++) {
-        resizeHandleDiv = this.createDiv(table.offsetHeight)
+        resizeHandleDiv = this.createResizeHandleDiv(table.offsetHeight)
 
-        col = cols[i]
-        if (!col.contains(col.getElementsByClassName(this.resizeHandleClass)[0])) {
-          col.appendChild(resizeHandleDiv)
-          col.style.position = 'relative'
+        this.removeResizeHandleDiv(cols[i])
 
-          this.setListeners(resizeHandleDiv)
-        }
+        cols[i].appendChild(resizeHandleDiv)
+        cols[i].style.position = 'relative'
+
+        this.setListeners(resizeHandleDiv)
       }
     },
-    createDiv(height) {
+    removeResizeHandleDiv(colNode) {
+      const oldResizeHandlerDiv = colNode.getElementsByClassName(this.resizeHandleClass)
+
+      if (!colNode.contains(oldResizeHandlerDiv[0])) return
+
+      oldResizeHandlerDiv[0].parentNode.removeChild(oldResizeHandlerDiv[0])
+    },
+    createResizeHandleDiv(height) {
       const div = document.createElement('div')
 
       div.style.top = 0
@@ -120,6 +116,8 @@ export default {
       return div
     },
     setListeners(div) {
+      this.destroyListeners()
+
       let pageX, curCol, nxtCol, curColWidth, nxtColWidth
 
       div.addEventListener('mousedown', function (event) {
@@ -148,14 +146,31 @@ export default {
         curColWidth = undefined
       })
     },
+    destroyListeners() {
+      if (resizeHandleDiv) {
+        resizeHandleDiv.removeEventListener('mousedown', function () {
+          console.log('mousedown event removed')
+        })
+      }
+      document.removeEventListener('mousemove', function () {
+        console.log('mousemove event removed')
+      })
+      document.removeEventListener('mouseup', function () {
+        console.log('mouseup event removed')
+      })
+    },
     setIndices(row, col) {
       this.rowIndex = row
       this.colIndex = col
     },
     addRow(position) {
-      const newRow = Array(this.headers.length).fill('')
+      this.rows.splice(position, 0, Array(this.headers.length).fill(''))
 
-      this.rows.splice(position, 0, newRow)
+      this.rowIndex = position
+
+      this.$nextTick(() => {
+        this.initResizableTable()
+      })
     },
     removeRow(position) {
       if (!this.rows.length) return
@@ -163,11 +178,21 @@ export default {
       this.rows.splice(position, 1)
 
       this.rowIndex = 0
+
+      this.$nextTick(() => {
+        this.initResizableTable()
+      })
     },
     addCol(position) {
       this.headers.splice(position, 0, '')
 
       this.rows.forEach(cols => cols.splice(position, 0, ''))
+
+      this.colIndex = position
+
+      this.$nextTick(() => {
+        this.initResizableTable()
+      })
     },
     removeCol(position) {
       this.headers.splice(position, 1)
@@ -175,6 +200,15 @@ export default {
       this.rows.forEach(cols => cols.splice(position, 1))
 
       this.colIndex = 0
+
+      this.$nextTick(() => {
+        this.initResizableTable()
+      })
+    },
+    updateContent(event, row, col) {
+      const cols = this.rows[row]
+      this.$set(cols, col, event.target.innerHTML)
+      this.$set(this.rows, row, cols)
     }
   }
 }

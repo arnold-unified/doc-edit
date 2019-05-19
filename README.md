@@ -1,6 +1,6 @@
-# DocEdit
+# Quote Awesome
 
-> Document editor with drag & drop and content resizable features
+> Document builder with drag & drop and content resizable features
 
 ## Build Setup
 

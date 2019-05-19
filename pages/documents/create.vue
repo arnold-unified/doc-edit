@@ -7,6 +7,7 @@
     <page data-page-size="us-letter">
       <video-block />
       <table-block />
+      <table-block />
     </page>
   </div>
 </template>
