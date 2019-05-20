@@ -36,14 +36,18 @@ $pixels-per-inch: 96px;
   margin-bottom: 40px;
   padding: 65.28px 50.88px; // 96px*0.68in 96px*0.53in
 
+  // ============= Remove later =============
+  float: right;
+  // ============= Remove later =============
+
   &.doc-us-letter {
     width: #{$pixels-per-inch * $us-letter-width};
-    height: #{$pixels-per-inch * $us-letter-height};
+    min-height: #{$pixels-per-inch * $us-letter-height};
   }
 
   &.doc-a4 {
     width: #{$pixels-per-inch * $a4-width};
-    height: #{$pixels-per-inch * $a4-height};
+    min-height: #{$pixels-per-inch * $a4-height};
   }
 }
 </style>

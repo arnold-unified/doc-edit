@@ -1,0 +1,39 @@
+.doc-drag-ghost {
+  height: 1px;
+  overflow: hidden;
+  border: 2px solid #4ce0b2;
+  border-radius: 2px;
+}
+
+.doc-drag-components-enter,
+.doc-drag-components-leave-active {
+  opacity: 0;
+  height: 0px;
+  margin-top: 0px;
+  padding: 0px;
+  border: solid 0px;
+}
+
+.doc-drag-component {
+  transition: all 0.5s;
+  position: relative;
+
+  & .doc-drag-handle {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 28px;
+    width: 28px;
+    display: block;
+    line-height: 15px;
+    padding: 4px;
+    text-align: center;
+    cursor: move;
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+}

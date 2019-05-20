@@ -30,7 +30,8 @@ export default {
   css: [
     '~/assets/sass/main.scss',
     'quill/dist/quill.core.css',
-    'quill/dist/quill.snow.css'
+    'quill/dist/quill.snow.css',
+    '~/assets/sass/draggable.scss'
   ],
 
   /*
