@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     'nuxt/no-cjs-in-config': 'off',
     'no-console': 'off',
-    'no-new': 'off'
+    'no-new': 'off',
+    'vue/no-v-html': 'off'
   }
 }

@@ -38,7 +38,8 @@ export default {
   */
   plugins: [
     '~/plugins/quill.client',
-    '~/plugins/helpers.client'
+    '~/plugins/helpers.client',
+    '~/plugins/sanitize-html.client'
   ],
 
   /*

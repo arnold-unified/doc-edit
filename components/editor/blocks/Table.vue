@@ -95,11 +95,11 @@ export default {
       }
     },
     removeResizeHandleDiv(colNode) {
-      const oldResizeHandlerDiv = colNode.getElementsByClassName(this.resizeHandleClass)
+      const resizeHandlerDiv = colNode.getElementsByClassName(this.resizeHandleClass)
 
-      if (!colNode.contains(oldResizeHandlerDiv[0])) return
+      if (!colNode.contains(resizeHandlerDiv[0])) return
 
-      oldResizeHandlerDiv[0].parentNode.removeChild(oldResizeHandlerDiv[0])
+      resizeHandlerDiv[0].parentNode.removeChild(resizeHandlerDiv[0])
     },
     createResizeHandleDiv(height) {
       const div = document.createElement('div')
@@ -207,7 +207,7 @@ export default {
     },
     updateContent(event, row, col) {
       const cols = this.rows[row]
-      this.$set(cols, col, event.target.innerHTML)
+      this.$set(cols, col, this.$sanitize(event.target.innerHTML))
       this.$set(this.rows, row, cols)
     }
   }
