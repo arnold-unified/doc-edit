@@ -1,5 +1,5 @@
 <template>
-  <section class="doc-container">
+  <section class="doc-block-container">
     <div>
       <button @click.prevent="addRow(rowIndex)">
         Add row above
@@ -215,8 +215,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.doc-container {
-  margin: 0 0 40px;
+.doc-block-container {
+  margin: 20px 0 20px;
 }
 </style>
 <style lang="scss">
@@ -241,7 +241,7 @@ table.doc-resizable-table {
   }
 
   & .resize-handle:hover {
-    border-right: 2px solid #4ad8ac;
+    border-right: 2px solid #4ce0b2;
   }
 }
 </style>

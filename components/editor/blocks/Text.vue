@@ -1,5 +1,5 @@
 <template>
-  <section class="doc-container">
+  <section class="doc-block-container">
     <div
       v-quill:myQuillEditor="editorOption"
       class="doc-text-block"
@@ -57,8 +57,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.doc-container {
-  margin: 0 0 40px;
+.doc-block-container {
+  margin: 20px 0 20px;
 }
 </style>
 <style lang="scss">
